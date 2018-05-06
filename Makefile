@@ -22,13 +22,13 @@ CLOCK      = 1000000
 PROGRAMMER = -c usbasp
 OBJECTS    = main.o \
 			 uart/uart.o \
-			 twi/i2c.o \
 			 lcd/lcd.o \
+			 twi/i2c.o \
 			 bmp180/bmp180.o \
 			 mpu6050/mpu6050_low.o \
-			 mpu6050/mpu6050_high.o \
-			 telemetry-processor/telemetry_processor.o \
-			 filters/complimentary/complimentary_filter.o \
+		     mpu6050/mpu6050_high.o \
+			 telemetry-processor/telemetry_processor.o
+			 # filters/complimentary/complimentary_filter.o \
 			 filters/exponential/exponential_filter.o
 
 FUSES      = -U lfuse:w:0xe1:m -U hfuse:w:0x99:m
@@ -110,12 +110,12 @@ disasm:	main.elf
 
 cpp:
 	$(COMPILE) -E main.c \
-				 uart/uart.c \
-				 twi/i2c.c \
-				 lcd/lcd.c \
-				 bmp180/bmp180.c \
-				 mpu6050/mpu6050_low.c \
-				 mpu6050/mpu6050_high.c \
-				 telemetry-processor/telemetry_processor.c \
-				 filters/complimentary/complimentary_filter.c \
-				 filters/exponential/exponential_filter.c
+	 			  uart/uart.c \
+				  lcd/lcd.c
+	  			  twi/i2c.c \
+	   			  bmp180/bmp180.c \
+	    		  mpu6050/mpu6050_low.c \
+		 		  mpu6050/mpu6050_high.c \
+		  		  telemetry-processor/telemetry_processor.c \
+				  # filters/complimentary/complimentary_filter.c \
+				  # filters/exponential/exponential_filter.c

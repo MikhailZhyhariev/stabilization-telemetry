@@ -3,8 +3,8 @@
 
 #include <avr/io.h>
 
-#define SDA			4
-#define SCL			5
+#define SDA			1
+#define SCL			0
 #define I2C_PORT	PORTC
 #define I2C_PIN		PINC
 #define I2C_DDR		DDRC
