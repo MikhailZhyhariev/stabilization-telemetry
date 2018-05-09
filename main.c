@@ -87,19 +87,23 @@ int main(void)
     };
 
     // Information about array (type and length)
-    u8 arr_type[] = {TWO_BYTE, TWO_BYTE, ONE_BYTE, ONE_BYTE};
+    u8 arr_type[] = {TWO_BYTE, TWO_BYTE, FLOAT, FLOAT};
     u8 arr_len[] = {3, 3, 3, 3};
 
     // Initialize stream items
     telemetry_item* items = Telemetry_getItems(COUNT, ids, functions, types, arr_len, arr_type);
 
     LCDWriteStringXY(0, 0, "Waiting for id..");
+    LCDWriteStringXY(0, 1, "id=")
 
     while (1) {
+        // u8 id = Telemetry_receiveData();
+
         u8 id = Telemetry_streamData(items, COUNT);
-        LCDWriteStringXY(0, 1, "id=")
         LCDWriteIntXY(3, 1, id, 2);
-        _delay_ms(50);
+
+        // Telemetry_transmitData(100);
+        // _delay_ms(200);
     }
     return 0;
 }

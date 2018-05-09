@@ -2,7 +2,7 @@
 #define UART_H
 
 #define FOSC 1000000
-#define BAUD 9600
+#define BAUD 4800
 #define MYUBRR FOSC / 16 / BAUD - 1
 
 void USART_Init(unsigned char ubrr);

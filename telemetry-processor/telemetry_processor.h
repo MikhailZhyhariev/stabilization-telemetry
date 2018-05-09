@@ -49,7 +49,7 @@ typedef uint32_t    u32;
 // For use on orangePi (rapberryPi)
 #elif PLATFORM == ORANGE
     // UART settings
-    #define BAUD                            9600
+    #define BAUD                            4800
     #define INTERFACE                       "/dev/ttyS0"
     // File descriptor
     static int fd;
@@ -62,17 +62,17 @@ typedef uint32_t    u32;
 // Callback for initializing an array of functions
 typedef void*   (*getter)(void);
 // Callback to cast in fixed-point variable
-typedef s32     (*fixed_point)();
+typedef s32     (*fixed_point)(void);
 // Callback to cast in float-point variable
-typedef float   (*float_point)();
+typedef float   (*float_point)(void);
 // Callback to cast in an array of fixed-point variables
-typedef s32*    (*fixed_array)();
+typedef s32*    (*fixed_array)(void);
 
 // An array information
 typedef struct {
     u8 type;
     u8 length;
-    s32* data;
+    void* data;
 } array_info;
 
 // Telemetry items structure
@@ -88,6 +88,8 @@ typedef struct {
 
     // An array information
     array_info array;
+
+    void* data;
 } telemetry_item;
 
 // Types of a data
@@ -158,14 +160,13 @@ float* Telemetry_receiveFloat(void);
  * @param type - an array items type
  * @param len  - length of array
  */
-void Telemetry_transmitArray(s32* arr, u8 type, u8 len);
+void Telemetry_transmitArray(void* arr, u8 type, u8 len);
 
 /**
  * Transmitting an array of n-bytes digits using UART interface
- * @param  len - length of array
- * @return     an array of n-bytes digits
+ * @return  array_info struct item with received data (type, length, data)
  */
-s32* Telemetry_receiveArray(void);
+array_info* Telemetry_receiveArray(void);
 
 /**
  * Create telemetry items
@@ -197,8 +198,9 @@ u8 Telemetry_streamData(telemetry_item* items, u8 count);
 
 /**
  * Getting telemetry data after transmitting identifier
- * @param id    - data identifier
+ * @param  id - data identifier
+ * @return    telemetry struct item with received data
  */
-void* Telemetry_getData(u8 id);
+telemetry_item* Telemetry_getData(u8 id);
 
 #endif
