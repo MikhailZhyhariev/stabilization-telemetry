@@ -131,10 +131,6 @@ s32 BMP180_getTemp(void) {
     u32 X1 = (UT - bmp180.AC6) * bmp180.AC5 / pow(2, 15);
     u32 X2 = bmp180.MC * pow(2, 11) / (X1 + bmp180.MD);
     bmp180.B5 = X1 + X2;
-
-    // s32* result = (s32 *)malloc(sizeof(s32));
-    // *result = (bmp180.B5 + 8) / pow(2, 4) / 10;
-    // return result;
     return (bmp180.B5 + 8) / pow(2, 4) / 10;
 }
 

@@ -64,7 +64,7 @@
  *  | ultra high resolution |  3  |       25.5        |
  *  |_______________________|_____|___________________|
  */
-#define OSS             0x01
+#define OSS             0x02
 
 // Temperature control register value for OSS
 #define OSS_TEMP_VALUE  0x2E
