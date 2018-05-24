@@ -1,5 +1,5 @@
 /* Name: main.c
- * Author: Zhyhariev MIkhail
+ * Author: Zhyhariev Mikhail
  * License: MIT
  */
 
@@ -13,8 +13,6 @@
 #include "mpu6050/mpu6050.h"
 #include "bmp180/bmp180.h"
 #include "telemetry-processor/telemetry_processor.h"
-// #include "filters/complimentary/complimentary_filter.h"
-// #include "filters/exponential/exponential_filter.h"
 
 // Amount of stream elements
 #define COUNT               11
@@ -97,13 +95,8 @@ int main(void)
     LCDWriteStringXY(0, 1, "id=")
 
     while (1) {
-        // u8 id = Telemetry_receiveData();
-
         u8 id = Telemetry_streamData(items, COUNT);
         LCDWriteIntXY(3, 1, id, 2);
-
-        // Telemetry_transmitData(100);
-        // _delay_ms(200);
     }
     return 0;
 }
